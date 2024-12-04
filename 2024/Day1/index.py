@@ -1,22 +1,20 @@
 # Get data
-
-arr1 = []
-arr2 = []
+arr1, arr2 = [], []
 
 with open('data.txt', 'r') as file:
-    for i in range(1000):
-        data = file.readline()
+    for line in file.readlines():
+        value1, value2 = (int(number) for number in line.split())
         # get from list, appears to be fixed number lengths
-        arr1.append(int(data[0:5]))
-        arr2.append(int(data[8:13]))
-# basically lazy, surely you could optimize a sort in place or something while looping initially.
-arr1 = sorted(arr1)
-arr2 = sorted(arr2)
+        arr1.append(value1)
+        arr2.append(value2)
+
+arr1.sort()
+arr2.sort()
+length = len(arr1)
 
 # part 1
 arr3 = []
-
-for i in range(1000):
+for i in length:
       arr3.append(abs(arr2[i]-arr1[i]))
 
 print('part 1', sum(arr3))
